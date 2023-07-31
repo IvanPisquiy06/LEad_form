@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcomfyLead</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<header>
+    <img src="assets/EcomfyLogo.png" class="logo">
+    <button class="boton openFormButton">Click to Sign Up</button>
+</header>
+<body>
+    <div id="popupFormContainer" style="display: none;">
+        <button id="closeButton">x</button>
+        <form id="popupForm">
+            <!-- Your form fields here -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name">
+
+            <label for="email">Email:*</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:*</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country">
+
+            <label for="platform">Which platform do you use? (TT, FB, SMS, Google...):</label>
+            <input type="text" id="country" name="country">
+
+            <label for="verticals">Which verticals do you run?:</label>
+            <input type="text" id="verticals" name="verticals">
+
+            <label for="revenue">How much revenue per month do you make?</label>
+            <input type="text" id="revenue" name="revenue">
+
+            <button type="submit" class="submit">Submit</button>
+        </form>
+    </div>
+    <div class="container">
+        <div class="info">
+            <h3>
+                <span>EcomfyLead:</span>Unleash de Full Potential of your <span>Afilliate Traffic</span>
+            </h3>
+            <h4>Tired of Being "Held Back" by Your Network?</h4>
+            <p>You're not alone. We've heard countless affiliate horror stories, tales of frustration, and setbacks from individuals just like you who have been let down by their networks. Experiences such as:</p>
+            <ul>
+                <li>Commissions being scrubbed without any justifiable reason.</li>
+                <li>Absence of effective support when you need it the most.</li>
+                <li>Payouts that take forever to reach your account.</li>
+            </ul>
+            <p>These obstacles can inhibit your growth, stifle your potential, and leave you feeling disillusioned with the whole affiliate marketing landscape. But it doesn't have to be this way.
+            </p>
+            <button class="boton openFormButton">Click to Sign Up</button>
+        </div>
+        <img src="assets/phrase.webp">
+    </div>
+    <div class="welcome">
+        <div>
+            <h2>Welcome to EcomfyLead: The New Era of Affiliate Marketing</h2>
+            <p>At EcomfyLead, we're rewriting the rules of the affiliate game. We've listened to your concerns, understood your pain points, and designed our platform to address these issues head-on. We're all about empowering you to SCALE your operations and take your business to new heights.
+            </p>
+        </div>
+        <img class="benefits" src="assets/chart.webp" alt="benefits">
+    </div>
+    <div class="incentive">
+        <p>
+            Come see how EcomfyLead has evolved to help Affiliates SCALE and elevate their success to unprecedented levels. Join us now, and unleash the full potential of your traffic. Your growth journey begins here.
+        </p>
+        <button class="boton2 openFormButton">Click to Sign Up</button>
+    </div>
+    <div class="container2">
+        <div class="info2">
+            <p>Customer acquisition at scale</p>
+            <h2>No More Scrubbed Commissions</h2>
+            <p>With EcomfyLead, you can bid goodbye to scrubbed commissions. We understand how vital every penny is in your affiliate journey. Our transparent and fair system ensures that you receive every cent you've worked so hard for.</p>
+            <button class="boton openFormButton">Click to Sign Up</button>
+        </div>
+        <img src="assets/image.webp" alt="Image1">
+    </div>
+</body>
+<footer>
+    <img src="assets/logoWhite.png" alt="White logo">
+</footer>
+<script>
+    // Function to open the pop-up window
+    function openPopupForm() {
+        var popup = document.getElementById("popupFormContainer");
+        popup.style.display = "block";
+    }
+
+    // Function to close the pop-up window
+    function closePopupForm() {
+        var popup = document.getElementById("popupFormContainer");
+        popup.style.display = "none";
+    }
+
+    // Add event listener to the button
+    var openButton = document.querySelectorAll(".openFormButton");
+    openButton.forEach(function(button){
+        button.addEventListener("click", openPopupForm);
+    })
+
+    // Add event listener to close the pop-up when submitting the form
+    var popupForm = document.getElementById("popupForm");
+    popupForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+        // Handle form data here if needed
+        closePopupForm();
+    });
+
+    function closePopupForm() {
+        var popup = document.getElementById("popupFormContainer");
+        popup.style.display = "none";
+    }
+
+    // Add event listener to the close button
+    var closeButton = document.getElementById("closeButton");
+    closeButton.addEventListener("click", closePopupForm);
+</script>
+</html>
