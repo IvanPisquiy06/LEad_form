@@ -11,8 +11,8 @@
     <button class="boton openFormButton">Click to Sign Up</button>
 </header>
 <body>
-    <div id="popupFormContainer" style="display: none;">
-        <button id="closeButton">x</button>
+    <div class="popupContainer" id="popupFormContainer" style="display: none;">
+        <button id="closeButton" class="close">x</button>
         <form id="popupForm">
             <!-- Your form fields here -->
             <label for="name">Full Name:</label>
@@ -28,7 +28,7 @@
             <input type="text" id="country" name="country">
 
             <label for="platform">Which platform do you use? (TT, FB, SMS, Google...):</label>
-            <input type="text" id="country" name="country">
+            <input type="text" id="platform" name="platform">
 
             <label for="verticals">Which verticals do you run?:</label>
             <input type="text" id="verticals" name="verticals">
@@ -36,8 +36,19 @@
             <label for="revenue">How much revenue per month do you make?</label>
             <input type="text" id="revenue" name="revenue">
 
-            <button type="submit" class="submit">Submit</button>
+            <button id="continue" type="button" class="submit">Continue</button>
+            <button id="submitting-form" hidden type="submit" class="submit"></button>
         </form>
+    </div>
+    <div class="popupContainer" id="popupNumberVerification" style="display: none;">
+        <button id="closeButton-verification" class="close">x</button>
+        <div id="popupVerification">
+            <!-- Your form fields here -->
+            <label for="verification">Verification Code:</label>
+            <input type="text" id="verification" name="verification" required>
+
+            <button id="submit-everything" type="button" class="submit">Submit</button>
+        </div>
     </div>
     <div class="container">
         <div class="info">
@@ -84,7 +95,14 @@
 <footer>
     <img src="assets/logoWhite.png" alt="White logo">
 </footer>
+
+<script src="assets/js/jquery-3.7.0/jquery.min.js"></script>
+
 <script>
+
+    console.log('don pepito')
+
+
     // Function to open the pop-up window
     function openPopupForm() {
         var popup = document.getElementById("popupFormContainer");
@@ -103,25 +121,100 @@
         button.addEventListener("click", openPopupForm);
     })
 
+    // Add event to button 'continue'
+    $('#continue').click(function(){
+        //Validate form
+        if (!$("#email")[0].checkValidity()) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        if (!$("#phone")[0].checkValidity()) {
+            alert("Please enter your phone.");
+            return;
+        }
+
+        //First we send the verification code
+        let recipientNumber = $('#phone').val().replace(' ', '').replace('-', '');
+        $.ajax({
+            type: 'POST',
+            url: '/endpoints/send-verification.php', // Call the PHP script on your server
+            data: {
+                recipient: recipientNumber,
+                locale: 'es'
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    //Go to next step
+                    $('#popupFormContainer').hide();
+                    $('#popupNumberVerification').show();
+                } else {
+                    alert('Error sending verification code:' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('Error sending verification code:' + error);
+            }
+        });
+
+    })
+
+    // Add event listener to the button
+    $('#submit-everything').click(function(){
+        //Validate form
+        if (!$("#verification")[0].checkValidity()) {
+            alert("Please enter a valid verification code.");
+            return;
+        }
+
+        // Get the info to validate it
+        let code = $('#verification').val();
+        let recipientNumber = $('#phone').val().replace(' ', '').replace('-', '');
+
+        // Verify if the code is correct
+        $.ajax({
+            type: 'POST',
+            url: '/endpoints/verify-code.php', // Call the PHP script on your server
+            data: {
+                recipient: recipientNumber,
+                verificationCode: code
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    //Submit the form
+                    $('#submitting-form').trigger('click');
+                } else {
+                    alert('Error validating code: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('Error validating code:' + error);
+            }
+        });
+    })
+
+
     // Add event listener to close the pop-up when submitting the form
     var popupForm = document.getElementById("popupForm");
     popupForm.addEventListener("submit", function(event) {
         event.preventDefault(); // Prevent form submission
-        // Handle form data here if needed
-        closePopupForm();
+        console.log('submitting form');
     });
 
     function closePopupForm() {
         var popup = document.getElementById("popupFormContainer");
         popup.style.display = "none";
     }
+    function closePopupFormVerification() {
+        var popup = document.getElementById("popupNumberVerification");
+        popup.style.display = "none";
+    }
 
     // Add event listener to the close button
     var closeButton = document.getElementById("closeButton");
     closeButton.addEventListener("click", closePopupForm);
+
+    // Add event listener to the close button
+    var closeButton = document.getElementById("closeButton-verification");
+    closeButton.addEventListener("click", closePopupFormVerification);
 </script>
 </html>
-
-AC8431222f0df64cc3e4c1955c5eb8df65 sid
-fea48f953e0c41755bc5a226df0aba95 token
-+18506052539 phone

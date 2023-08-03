@@ -130,7 +130,7 @@ footer img{
 }
 
 /* Style for the pop-up container */
-#popupFormContainer {
+.popupContainer {
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -154,7 +154,7 @@ footer img{
     gap: 10px;
 }
 
-#closeButton{
+.close{
     color: white;
     font-weight: 900;
     background-color: darkred;
