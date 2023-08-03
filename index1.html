@@ -13,7 +13,7 @@
 <body>
     <div class="popupContainer" id="popupFormContainer" style="display: none;">
         <button id="closeButton" class="close">x</button>
-        <form id="popupForm">
+        <form id="popupForm" onsubmit="submit.php">
             <!-- Your form fields here -->
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name">
@@ -198,6 +198,9 @@
     popupForm.addEventListener("submit", function(event) {
         event.preventDefault(); // Prevent form submission
         console.log('submitting form');
+
+
+
     });
 
     function closePopupForm() {
