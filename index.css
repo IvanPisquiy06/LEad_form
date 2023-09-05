@@ -165,6 +165,36 @@ footer img{
     cursor: pointer;
 }
 
+#continue{
+    border-radius: 5px;
+    border: none;
+    background-color: aqua;
+    padding: 10px;
+    transition: 0.3;
+}
+
+#continue:hover{
+    transform: scale(1.1);
+}
+
+#popupVerification{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#submitting-form{
+    border-radius: 5px;
+    border: none;
+    background-color: darkblue;
+    color: white;
+    transition: 0.3;
+}
+
+#submitting-form{
+    transform: scale(1.1);
+}
+
 .submit{
     cursor: pointer;
 }
