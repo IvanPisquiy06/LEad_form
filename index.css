@@ -170,6 +170,7 @@ footer img{
     border: none;
     background-color: aqua;
     padding: 10px;
+    margin: 10px 0;
     transition: 0.3;
 }
 
