@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to EcomfyLead: Your Journey Begin Here</h1>
+    <h3>Thanks for signing up</h3>
+    <p>We're thrilled to have you on board! This is not just a 'Thank You' page, it's the starting point of an exciting journey that we're going to undertake together.At EcomfyLead, we're committed to ensuring that your affiliate marketing endeavors are seamless, rewarding, and scalable. We're here to empower you, guide you, and celebrate your successes along the way.</p>
+    <br>
+    <p>Remember, this is more than just a sign-up. You've taken the first step towards transforming your affiliate marketing game. We're excited to see where this journey will take you.Once again, thank you for choosing EcomfyLead. Here's to scaling new heights together!</p> 
+</body>
+</html>
 <?php
 
 header('Content-type: application/json');
@@ -19,45 +34,25 @@ $platform = $_POST['platform'];
 $verticals = $_POST['verticals'];
 $revenue = $_POST['revenue'];
 
-
-$tag = $_POST['tag'];
-$state = $_POST['statec'];
-$affid = $_POST['affid'] ?? null;
-$oid = $_POST['oid'] ?? null;
 $apiPayload = [
     'email' => $email,
-    'firstName' => $firstName,
-    'lastName' => $lastName,
+    'name' => $name,
     'phone' => $phone,
     //	'country'   => $country,
-    'state' => $state,
-    'name' => sprintf('%s %s', $firstName, $lastName),
-    'address1' => $fullAddress,
-
-    'postalCode' => $postalCode,
+    'country' => $country,
+    'tags' => [
+        "EcomfyForm",
+        "lead"
+    ]
 ];
-$consultor = $_POST['consultor'];
 $customsFields = [
-    'bf6Z12dI4R0IMwLgpqSC' => $propertyOwnership,
-    'B5AsVW3l05R8ofllftMP' => $provider,
-    'Pg93Hl6L7PWFHUEKkyvo' => $bill,
-    '18joKpNF6obsRJXyg1Mb' => $roofShade,
+    'AVPIjDVHmKv1Mtn2N1RS' => $platform,
+    'O1g1kwjzgVyMkjisJmVW' => $verticals,
+    '01UWVssoYoJnO1DF7ZC5' => $revenue,
 ];
-$customsFields['Bji84fMEnv49A5cdIK7j'] = $affid;
-$customsFields['QVkyPJzdOMdrNk39tljT'] = $oid;
 
-$tag2 = null;
-$api = "";
 $apiPayload['customField'] = $customsFields;
 $apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2NhdGlvbl9pZCI6InV3VFRkTXFpNmZFdEhBYlVCV2JpIiwiY29tcGFueV9pZCI6IkI1ZkRGM0g3RmUwOVFCVlN3VFpoIiwidmVyc2lvbiI6MSwiaWF0IjoxNjcwODk3ODk5MDI1LCJzdWIiOiJBV202c1F1NEFUOEtMV0FRSWVrQSJ9.pojXDxMNlrg7U0rVZH-aetkzTQpSd0GmCOlvTeeoaWA";
-
-if ($tag) {
-
-    $apiPayload['tags'] = [$tag];
-    if ($tag2) {
-        $apiPayload['tags'][1] = $tag2;
-    }
-}
 
 $curl = curl_init();
 
@@ -87,24 +82,8 @@ if ($err) {
     die();
 }
 
-$apiPayload['propertyOwnerShip'] = $propertyOwnership;
-$apiPayload['provider'] = $provider;
-$apiPayload['bill'] = $bill;
-$apiPayload['roofShade'] = $roofShade;
-$apiPayload['affid'] = $affid;
-$apiPayload['oid'] = $oid;
-$apiPayload['consultor'] = $consultor;
-
 $msg = null;
-try {
-    // NOSOTROS USAMOS UNA BASE DE DATOS APARTE A GOHIGHLEVEL, ESTO QUITALO SI NO LO USAS
-    // SI USTEDES LO USAN HABLAME Y TE DOY MAS CODIGO DE ESO
-    $db->store('leads', $apiPayload);
-} catch (Exception $e) {
-    $msg = $e->getMessage();
-    file_put_contents('./log_' . date("j.n.Y") . '.log', $msg, FILE_APPEND);
-    echo json_encode(['code' => 500, 'body' => null, 'tag' => $tag, 'msg' => $msg]);
-}
+
 
 echo json_encode(['code' => 200, 'body' => $response, 'tag' => $tag, 'msg' => $msg]);
 die();

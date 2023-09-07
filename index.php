@@ -47,7 +47,7 @@
             <label for="verification">Verification Code:</label>
             <input type="text" id="verification" name="verification" required>
 
-            <button id="submit-everything" type="button" class="submit">Submit</button>
+            <button id="submit-everything" type="submit" class="submit">Submit</button>
         </div>
     </div>
     <div class="container">
