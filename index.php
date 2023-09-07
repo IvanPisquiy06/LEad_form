@@ -198,9 +198,7 @@
     popupForm.addEventListener("submit", function(event) {
         event.preventDefault(); // Prevent form submission
         console.log('submitting form');
-
-
-
+        console.log('hola');
     });
 
     function closePopupForm() {

@@ -1,0 +1,19 @@
+body{
+    width: 70vw;
+}
+
+h1{
+    font-weight: 700;
+    font-size: 30px;
+    justify-content: center;
+    color: blue;
+}
+
+h3{
+    font-weight: 700;
+    font-size: 20px;
+}
+
+p{
+    font-size: 15px;
+}
