@@ -13,7 +13,7 @@
 <body>
     <div class="popupContainer" id="popupFormContainer" style="display: none;">
         <button id="closeButton" class="close">x</button>
-        <form id="popupForm" onsubmit="submit.php">
+        <form id="popupForm" onsubmit="endpoints/submit.php">
             <!-- Your form fields here -->
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name">
@@ -44,7 +44,7 @@
         <button id="closeButton-verification" class="close">x</button>
         <div id="popupVerification">
             <!-- Your form fields here -->
-            <label for="verification">Verification Code:</label>
+            <label for="verification" class="verify">Verification Code:</label>
             <input type="text" id="verification" name="verification" required>
 
             <button id="submit-everything" type="submit" class="submit">Submit</button>

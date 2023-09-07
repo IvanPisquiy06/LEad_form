@@ -199,3 +199,11 @@ footer img{
 .submit{
     cursor: pointer;
 }
+
+.verify{
+    margin: 10px 0;
+}
+
+#verification{
+    margin: 10px 0;
+}
