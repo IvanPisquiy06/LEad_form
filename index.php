@@ -13,7 +13,7 @@
 <body>
     <div class="popupContainer" id="popupFormContainer" style="display: none;">
         <button id="closeButton" class="close">x</button>
-        <form id="popupForm" onsubmit="endpoints/submit.php">
+        <form id="popupForm">
             <!-- Your form fields here -->
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name">
@@ -181,7 +181,7 @@
             success: function(response) {
                 if (response.status === 'success') {
                     //Submit the form
-                    $('#submitting-form').trigger('click');
+                    window.location.href = '/endpoints/submit.php';
                 } else {
                     alert('Error validating code: ' + response.message);
                 }
